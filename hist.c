@@ -1,5 +1,6 @@
 #include <assert.h>
 #include <errno.h>
+#include <limits.h>
 #include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -9,9 +10,14 @@
 #define EX_DATAERR  65
 #define EX_IOERR    74
 
-#define BINS  1023
 #define SIMS 32767
-#define QUAS   128
+#define BINS  1023
+
+#ifndef ARG_MAX
+# define QUAS 128
+#else
+# define QUAS ARG_MAX
+#endif
 
 unsigned long hist[BINS+1][SIMS+1]; /* = 0 */
 
