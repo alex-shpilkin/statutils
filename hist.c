@@ -13,25 +13,25 @@
 #define SIMS 32767
 #define QUAS   128
 
-unsigned hist[BINS+1][SIMS+1]; /* = 0 */
+unsigned long hist[BINS+1][SIMS+1]; /* = 0 */
 
-void sort(unsigned *lo, unsigned *hi) {
+void sort(unsigned long *lo, unsigned long *hi) {
     if (lo >= hi - 1) return;
 
-    unsigned p = *lo;
-    unsigned *i = lo, *j = hi;
+    unsigned long p = *lo;
+    unsigned long *i = lo, *j = hi;
     for (;;) {
         while (*i < p) i++;
         do j--; while (*j > p);
         if (i >= j) break;
-        unsigned t = *i; *i = *j; *j = t;
+        unsigned long t = *i; *i = *j; *j = t;
     }
 
     sort(lo, j);
     sort(j + 1, hi);
 
 #ifndef NDEBUG
-    for (unsigned *p = lo + 1; p < hi; p++)
+    for (unsigned long *p = lo + 1; p < hi; p++)
         assert(p[-1] <= p);
 #endif
 }
@@ -72,7 +72,7 @@ int main(int argc, char **argv) {
     if (errno != 0) {
         int status = (errno == EILSEQ ? EX_DATAERR : EX_IOERR);
         perror(argv[0]); return status;
-    } else if (read != EOF) {
+    } else if (read != EOF || sim != 0) {
         return EX_DATAERR;
     }
 
@@ -86,7 +86,7 @@ int main(int argc, char **argv) {
                 sim = floor(sims * quav[n]) + 1;
             else
                 sim = ceil(sims * quav[n]);
-            printf("\t%u", hist[bin][sim]);
+            printf("\t%lu", hist[bin][sim]);
         }
         fputc('\n', stdout);
     }
