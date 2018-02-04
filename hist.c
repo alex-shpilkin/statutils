@@ -78,7 +78,6 @@ int main(int argc, char **argv) {
 
     for (unsigned bin = 0; bin < bins + 1; bin++) {
         sort(&hist[bin][0], &hist[bin][sims+1]); /* this uses [sims] == 0 */
-        printf("%u", bin);
         for (unsigned n = 0; n < quas; n++) {
             /* The choice of <= over < here is fixed by requiring that the */
             /* quantiles be monotonous                                     */
@@ -86,9 +85,8 @@ int main(int argc, char **argv) {
                 sim = floor(sims * quav[n]) + 1;
             else
                 sim = ceil(sims * quav[n]);
-            printf("\t%lu", hist[bin][sim]);
+            printf("%lu%c", hist[bin][sim], n != quas-1 ? '\t' : '\n');
         }
-        fputc('\n', stdout);
     }
 
     return 0;
