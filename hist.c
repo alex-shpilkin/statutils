@@ -24,17 +24,17 @@ unsigned long hist[BINS+1][SIMS+1]; /* = 0 */
 void sort(unsigned long *lo, unsigned long *hi) {
     if (lo >= hi - 1) return;
 
-    unsigned long p = *lo;
-    unsigned long *i = lo, *j = hi;
+    unsigned long pivot = *lo;
+    unsigned long *p = lo, *q = hi;
     for (;;) {
-        while (*i < p) i++;
-        do j--; while (*j > p);
-        if (i >= j) break;
-        unsigned long t = *i; *i = *j; *j = t;
+        while (*p < pivot) p++;
+        do q--; while (*q > pivot);
+        if (p >= q) break;
+        unsigned long t = *p; *p = *q; *q = t;
     }
 
-    sort(lo, j);
-    sort(j + 1, hi);
+    sort(lo, q);
+    sort(q + 1, hi);
 
 #ifndef NDEBUG
     for (unsigned long *p = lo + 1; p < hi; p++)
