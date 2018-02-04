@@ -38,7 +38,7 @@ void sort(unsigned long *lo, unsigned long *hi) {
 
 #ifndef NDEBUG
     for (unsigned long *p = lo + 1; p < hi; p++)
-        assert(p[-1] <= p);
+        assert(p[-1] <= p[0]);
 #endif
 }
 
