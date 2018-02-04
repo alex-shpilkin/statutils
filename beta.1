@@ -2,40 +2,22 @@
 .SH NAME 
 beta \- sample binomial distributions
 .SH SYNOPSIS
-.B beta
-.I count
+\fBbeta \fIcount
 .SH DESCRIPTION
-Given a population size
-.I N
-and a sample
-.I n
-from a binomial distribution with parameters
-.RI ( N ,
-.IR p ),
-.I beta
-computes
-.I count
-more samples from it, assuming a uniform Bayesian prior for the unknown
-parameter
-.IR p .
-
-The input values
-.I N
-and
-.I n
-are read from standard input, in this order, separated by whitespace. Several
-distributions can be specified, one per line. For each distribution,
-.I count
-lines are written, containing the population size
-.IR N
-the sampled value. The values on output are separated by a single tab
-character.
+Given a population size \fIN\fR and a sample \fIn\fR from a binomial
+distribution with parameters (\fIN\fR, \fIp\fR), \fIbeta\fR computes
+\fIcount\fR more samples from it, assuming a uniform Bayesian prior for the
+unknown parameter \fIp\fR.
+.PP
+The values of \fIN\fR and \fIn\fR are read from standard input, in this order,
+separated by whitespace. Several distributions can be specified, one per line.
+For each distribution, \fIcount\fR lines are written, containing the population
+size \fIN\fR and the sampled value. Values on output are separated by a single
+tab character.
 .SH LIMITATIONS
-The population size
-.I N
-is limited to about 30000, which is also the range of values for which
-.I beta
-can be expected to produce reasonably accurate results with acceptable speed.
+The population size \fIN\fR is limited to about 30000, which is also the range
+of values for which \fIbeta\fR can be expected to produce reasonably accurate
+results with acceptable speed.
 .SH AUTHOR
 Alexander Shpilkin <ashpilkin@gmail.com>
 .SH SEE ALSO

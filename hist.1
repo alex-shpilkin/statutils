@@ -22,7 +22,8 @@ After consuming its input, \fIhist\fR goes through each bin in order and
 outputs a line containing its \fIquantile\fRs (each specified on the command
 line by a floating-point number from 0 to 1 as accepted by
 .IR strtoud (3))
-across the \fIcount\fR histograms.
+across the \fIcount\fR histograms. Values on output are separated by single tab
+characters.
 .SH LIMITATIONS
 The parameters \fIcount\fR and \fIbins\fR are limited to about 30000 and about
 1000 respectively to keep memory requirements reasonable.
