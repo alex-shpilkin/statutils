@@ -9,6 +9,6 @@ all: beta hist
 clean:
 	rm -f beta hist
 
-.html.1:
+.1.html:
 	groff -man -T html -P -l -P -r $< | \
 	  awk '{ print } /<style/ { print "       body    { font-family: monospace }" }' >$@

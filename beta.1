@@ -23,11 +23,8 @@ The input values
 .I N
 and
 .I n
-are read from standard input, in this order, separated by whitespace, in C
-syntax as accepted by
-.IR strtoul (3).
-Several distributions can be specified, one per line. For each distribution
-specified,
+are read from standard input, in this order, separated by whitespace. Several
+distributions can be specified, one per line. For each distribution,
 .I count
 lines are written, containing the population size
 .IR N
@@ -41,5 +38,7 @@ is limited to about 30000, which is also the range of values for which
 can be expected to produce reasonably accurate results with acceptable speed.
 .SH AUTHOR
 Alexander Shpilkin <ashpilkin@gmail.com>
-.SH BUGS
-Present.
+.SH SEE ALSO
+.IR hist (1),
+.IR cut (1),
+.IR awk (1)

@@ -1,0 +1,37 @@
+.TH HIST 1 2018 "Alexander Shpilkin"
+.SH NAME
+hist \- compute statistics of histograms
+.SH SYNOPSIS
+\fBhist \fIcount bins\fR [\fIquantile\fR ...]
+.SH DESCRIPTION
+Given \fIcount\fR parallel streams of input data, \fIhist\fR arranges them into
+histograms of \fIbins\fR+1 bins and computes statistics over the results.
+.PP
+Values are read from standard input in groups of \fIcount\fR lines,
+corresponding to the parallel input streams. Each line must contain two
+positive integers \fIN\fR and \fIn\fR, in this order, separated by whitespace,
+which instruct \fIhist\fR to increment the bin corresponding to
+\fIn\fR/\fIN\fR by \fIn\fR.
+.PP
+Bin number \fIk\fR, 0 \(<= \fIk\fR \(<= \fIbins\fR, is centered at
+\fIk\fR/\fIbins\fR. Thus bins from 1 to \fIbins\fR-1 inclusive are
+1/\fIbins\fR wide while bins 0 and \fIbins\fR at the endpoints are two times
+narrower.
+.PP
+After consuming its input, \fIhist\fR goes through each bin in order and
+outputs a line containing its \fIquantile\fRs (each specified on the command
+line by a floating-point number from 0 to 1 as accepted by
+.IR strtoud (3))
+across the \fIcount\fR histograms.
+.SH LIMITATIONS
+The parameters \fIcount\fR and \fIbins\fR are limited to about 30000 and about
+1000 respectively to keep memory requirements reasonable.
+.
+.\" FIXME document rounding behaviour
+.
+.SH AUTHOR
+Alexander Shpilkin <ashpilkin@gmail.com>
+.SH SEE ALSO
+.IR beta (1),
+.IR cut (1),
+.IR awk (1)
