@@ -1,0 +1,45 @@
+.TH BETA 1 2018 "Alexander Shpilkin"
+.SH NAME 
+beta \- sample binomial distributions
+.SH SYNOPSIS
+.B beta
+.I count
+.SH DESCRIPTION
+Given a population size
+.I N
+and a sample
+.I n
+from a binomial distribution with parameters
+.RI ( N ,
+.IR p ),
+.I beta
+computes
+.I count
+more samples from it, assuming a uniform Bayesian prior for the unknown
+parameter
+.IR p .
+
+The input values
+.I N
+and
+.I n
+are read from standard input, in this order, separated by whitespace, in C
+syntax as accepted by
+.IR strtoul (3).
+Several distributions can be specified, one per line. For each distribution
+specified,
+.I count
+lines are written, containing the population size
+.IR N
+the sampled value. The values on output are separated by a single tab
+character.
+.SH LIMITATIONS
+The population size
+.I N
+is limited to about 30000, which is also the range of values for which
+.I beta
+can be expected to produce reasonably accurate results with acceptable speed.
+.SH AUTHOR
+Alexander Shpilkin <ashpilkin@gmail.com>
+.SH BUGS
+Present.
